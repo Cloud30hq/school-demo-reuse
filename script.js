@@ -1,117 +1,5 @@
-const siteConfig = {
-  schoolName: "Rechabite Group of Schools",
-  schoolShort: "Rechabite",
-  city: "Ijebu Ode",
-  tagline:
-    "Learning and achieving together through exceptional Early Years and Primary education.",
-  email: "admissions@rechabitegroupschools.edu",
-  phone: "08133546272",
-  address: "10, Olufowobi Street, off Awokoya Str, Ijebu Ode",
-  signals: [
-    "10+ Years of Excellence",
-    "100% Pupil-Focused Learning",
-    "Inclusive SEND Support",
-    "Early Years to Primary",
-    "Creativity + Character Development",
-    "Safe & Structured Campus"
-  ],
-  programs: [
-    {
-      title: "Nursery School",
-      text: "Play-based foundations that build confidence, language, curiosity, and social development.",
-      level: "Creche to Kindergarten",
-      outcomes: [
-        "Language and literacy readiness",
-        "Emotional growth and self-expression",
-        "Numeracy through practical activities"
-      ]
-    },
-    {
-      title: "Primary Curriculum",
-      text: "A blended curriculum focused on strong academics, character, and problem-solving skills.",
-      level: "Year 1 to Year 6",
-      outcomes: [
-        "Strong numeracy and reading outcomes",
-        "Structured science and discovery projects",
-        "Leadership and teamwork habits"
-      ]
-    },
-    {
-      title: "Model College",
-      text: "College-level preparation with academic depth, leadership training, and future-ready skills.",
-      level: "Junior and Senior College",
-      outcomes: [
-        "Strong WAEC and NECO exam readiness",
-        "STEM, arts, and leadership pathways",
-        "Mentorship and career-focused guidance"
-      ]
-    }
-  ],
-  life: [
-    {
-      image:
-        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1300&q=80",
-      caption: "Student Research Expo",
-      className: "wide"
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1519452575417-564c1401ecc0?auto=format&fit=crop&w=1100&q=80",
-      caption: "Classroom Learning",
-      className: "tall"
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
-      caption: "Creative Arts",
-      className: "wide"
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=1100&q=80",
-      caption: "Sports and Movement",
-      className: "tall"
-    }
-  ],
-  stories: [
-    {
-      quote:
-        "Admissions was clear and supportive from start to finish. We felt guided, not pressured, and our son settled in quickly.",
-      name: "Mariam Yusuf",
-      role: "Parent, Year 3"
-    },
-    {
-      quote:
-        "The teachers communicate progress clearly and give practical suggestions we can follow at home every week.",
-      name: "Chinwe Okafor",
-      role: "Parent, Year 2"
-    },
-    {
-      quote:
-        "The school balances strong academics with kindness and confidence-building. It has been a great fit for our family.",
-      name: "Amina Bello",
-      role: "Parent, Year 1"
-    },
-    {
-      quote:
-        "We moved mid-session and were worried about transition, but the support team made our daughter feel included immediately.",
-      name: "Tosin Adebayo",
-      role: "Parent, Year 4"
-    },
-    {
-      quote:
-        "I appreciate the structure and discipline, but also how much the school encourages creativity through arts and clubs.",
-      name: "Ifeoma Nnaji",
-      role: "Parent, Year 5"
-    },
-    {
-      quote:
-        "From security to classroom teaching, everything feels intentional and child-focused. We are very satisfied with the experience.",
-      name: "Sadiq Musa",
-      role: "Parent, Year 6"
-    }
-  ]
-};
+const DEFAULT_SCHOOL_KEY = "rechabite";
+let siteConfig = null;
 
 const selectors = {
   schoolName: document.querySelectorAll("[data-school-name]"),
@@ -133,7 +21,57 @@ function assignText(nodeList, value) {
   });
 }
 
+function sanitizeSchoolKey(rawKey) {
+  return String(rawKey || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9-]/g, "");
+}
+
+function getSchoolKeyFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  return sanitizeSchoolKey(params.get("school")) || DEFAULT_SCHOOL_KEY;
+}
+
+async function fetchSchoolConfig(schoolKey) {
+  const response = await fetch(`schools/${schoolKey}.json`);
+  if (!response.ok) {
+    throw new Error(`School config not found: ${schoolKey}`);
+  }
+
+  return response.json();
+}
+
+async function loadSiteConfig() {
+  const requestedKey = getSchoolKeyFromUrl();
+
+  try {
+    return await fetchSchoolConfig(requestedKey);
+  } catch (error) {
+    if (requestedKey !== DEFAULT_SCHOOL_KEY) {
+      console.warn(`Failed to load '${requestedKey}', using '${DEFAULT_SCHOOL_KEY}' instead.`);
+      return fetchSchoolConfig(DEFAULT_SCHOOL_KEY);
+    }
+
+    throw error;
+  }
+}
+
+function updateMeta() {
+  if (!siteConfig) return;
+
+  const title = `${siteConfig.schoolName} | ${siteConfig.tagline}`;
+  document.title = title;
+
+  const descriptionTag = document.querySelector('meta[name="description"]');
+  if (descriptionTag) {
+    descriptionTag.setAttribute("content", siteConfig.tagline);
+  }
+}
+
 function hydrateReusableContent() {
+  if (!siteConfig) return;
+
   assignText(selectors.schoolName, siteConfig.schoolName);
   assignText(selectors.schoolShort, siteConfig.schoolShort);
   assignText(selectors.tagline, siteConfig.tagline);
@@ -153,7 +91,8 @@ function hydrateReusableContent() {
 }
 
 function renderSignals() {
-  if (!selectors.signalTrack) return;
+  if (!siteConfig || !selectors.signalTrack) return;
+
   const mergedSignals = [...siteConfig.signals, ...siteConfig.signals];
   selectors.signalTrack.innerHTML = mergedSignals
     .map((signal) => `<span class="signal-item">${signal}</span>`)
@@ -161,7 +100,8 @@ function renderSignals() {
 }
 
 function renderPrograms() {
-  if (!selectors.programGrid) return;
+  if (!siteConfig || !selectors.programGrid) return;
+
   selectors.programGrid.innerHTML = siteConfig.programs
     .map(
       (program) => `
@@ -179,7 +119,8 @@ function renderPrograms() {
 }
 
 function renderLifeGallery() {
-  if (!selectors.lifeGrid) return;
+  if (!siteConfig || !selectors.lifeGrid) return;
+
   selectors.lifeGrid.innerHTML = siteConfig.life
     .map(
       (item) => `
@@ -192,7 +133,8 @@ function renderLifeGallery() {
 }
 
 function renderStories() {
-  if (!selectors.storyTrack) return;
+  if (!siteConfig || !selectors.storyTrack) return;
+
   selectors.storyTrack.innerHTML = siteConfig.stories
     .map(
       (story) => `
@@ -227,7 +169,7 @@ function setupMenu() {
 function setupStoriesSlider() {
   const nextBtn = document.getElementById("nextStory");
   const prevBtn = document.getElementById("prevStory");
-  if (!nextBtn || !prevBtn || !selectors.storyTrack) return;
+  if (!nextBtn || !prevBtn || !selectors.storyTrack || !siteConfig) return;
 
   let storyIndex = 0;
   const maxStories = siteConfig.stories.length;
@@ -342,13 +284,25 @@ function setupAnimations() {
   });
 }
 
-hydrateReusableContent();
-renderSignals();
-renderPrograms();
-renderLifeGallery();
-renderStories();
-setupMenu();
-setupStoriesSlider();
-setupActiveNav();
-setupLenis();
-setupAnimations();
+async function bootstrap() {
+  try {
+    siteConfig = await loadSiteConfig();
+  } catch (error) {
+    console.error("Unable to load school data.", error);
+    return;
+  }
+
+  updateMeta();
+  hydrateReusableContent();
+  renderSignals();
+  renderPrograms();
+  renderLifeGallery();
+  renderStories();
+  setupMenu();
+  setupStoriesSlider();
+  setupActiveNav();
+  setupLenis();
+  setupAnimations();
+}
+
+bootstrap();

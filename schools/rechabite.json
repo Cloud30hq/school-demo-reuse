@@ -1,0 +1,103 @@
+{
+  "schoolName": "Rechabite Group of Schools",
+  "schoolShort": "Rechabite",
+  "city": "Ijebu Ode",
+  "tagline": "Learning and achieving together through exceptional Early Years and Primary education.",
+  "email": "admissions@rechabitegroupschools.edu",
+  "phone": "08133546272",
+  "address": "10, Olufowobi Street, off Awokoya Str, Ijebu Ode",
+  "signals": [
+    "10+ Years of Excellence",
+    "100% Pupil-Focused Learning",
+    "Inclusive SEND Support",
+    "Early Years to Primary",
+    "Creativity + Character Development",
+    "Safe & Structured Campus"
+  ],
+  "programs": [
+    {
+      "title": "Nursery School",
+      "text": "Play-based foundations that build confidence, language, curiosity, and social development.",
+      "level": "Creche to Kindergarten",
+      "outcomes": [
+        "Language and literacy readiness",
+        "Emotional growth and self-expression",
+        "Numeracy through practical activities"
+      ]
+    },
+    {
+      "title": "Primary Curriculum",
+      "text": "A blended curriculum focused on strong academics, character, and problem-solving skills.",
+      "level": "Year 1 to Year 6",
+      "outcomes": [
+        "Strong numeracy and reading outcomes",
+        "Structured science and discovery projects",
+        "Leadership and teamwork habits"
+      ]
+    },
+    {
+      "title": "Model College",
+      "text": "College-level preparation with academic depth, leadership training, and future-ready skills.",
+      "level": "Junior and Senior College",
+      "outcomes": [
+        "Strong WAEC and NECO exam readiness",
+        "STEM, arts, and leadership pathways",
+        "Mentorship and career-focused guidance"
+      ]
+    }
+  ],
+  "life": [
+    {
+      "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1300&q=80",
+      "caption": "Student Research Expo",
+      "className": "wide"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1519452575417-564c1401ecc0?auto=format&fit=crop&w=1100&q=80",
+      "caption": "Classroom Learning",
+      "className": "tall"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
+      "caption": "Creative Arts",
+      "className": "wide"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=1100&q=80",
+      "caption": "Sports and Movement",
+      "className": "tall"
+    }
+  ],
+  "stories": [
+    {
+      "quote": "Admissions was clear and supportive from start to finish. We felt guided, not pressured, and our son settled in quickly.",
+      "name": "Mariam Yusuf",
+      "role": "Parent, Year 3"
+    },
+    {
+      "quote": "The teachers communicate progress clearly and give practical suggestions we can follow at home every week.",
+      "name": "Chinwe Okafor",
+      "role": "Parent, Year 2"
+    },
+    {
+      "quote": "The school balances strong academics with kindness and confidence-building. It has been a great fit for our family.",
+      "name": "Amina Bello",
+      "role": "Parent, Year 1"
+    },
+    {
+      "quote": "We moved mid-session and were worried about transition, but the support team made our daughter feel included immediately.",
+      "name": "Tosin Adebayo",
+      "role": "Parent, Year 4"
+    },
+    {
+      "quote": "I appreciate the structure and discipline, but also how much the school encourages creativity through arts and clubs.",
+      "name": "Ifeoma Nnaji",
+      "role": "Parent, Year 5"
+    },
+    {
+      "quote": "From security to classroom teaching, everything feels intentional and child-focused. We are very satisfied with the experience.",
+      "name": "Sadiq Musa",
+      "role": "Parent, Year 6"
+    }
+  ]
+}

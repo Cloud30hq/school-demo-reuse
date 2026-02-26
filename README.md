@@ -6,20 +6,31 @@ Modern, animated, mobile-friendly school website template using plain HTML, CSS,
 
 - `index.html`: Structure and sections
 - `styles.css`: Theme, layout, responsive behavior, visual style
-- `script.js`: Reusable data config, content rendering, smooth scroll, animations
+- `script.js`: School config loader, content rendering, smooth scroll, animations
+- `schools/*.json`: Per-school data files
 - `vercel.json`: Vercel-friendly static settings
 
 ## Quick Reuse
 
-Edit only `siteConfig` in `script.js` to reuse this template for another school:
+Create a new JSON file in `schools/` and share a URL with a `school` query key.
 
-- Name, tagline, contact details
-- City text in hero (`city`)
-- Programs
-- Program outcomes bullets (`outcomes`)
-- Gallery/campus images
-- Stories/testimonials
-- Scrolling signal strip content
+Examples:
+
+- `https://your-domain.vercel.app/?school=rechabite`
+- `https://your-domain.vercel.app/?school=aster`
+
+To add another school:
+
+1. Duplicate `schools/rechabite.json`.
+2. Rename it to `schools/<new-key>.json` (for example, `schools/greenfield.json`).
+3. Update the file content:
+   - Name, tagline, contact details
+   - City text in hero (`city`)
+   - Programs and outcomes
+   - Gallery/campus images
+   - Stories/testimonials
+   - Scrolling signal strip content
+4. Open `/?school=<new-key>` to preview.
 
 The layout uses alternating section moods (dark/light) and built-in conversion bands for better admissions flow.
 

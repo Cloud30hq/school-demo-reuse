@@ -1,0 +1,88 @@
+{
+  "schoolName": "KRYSTAL EDGE GROUP OF SCHOOLS",
+  "schoolShort": "Krystal Edge",
+  "city": "Akobo, Ibadan",
+  "tagline": "Learning and achieving together through structured, child-centered education.",
+  "email": "admissions@krystaledgeschools.edu",
+  "phone": "0803 428 3894",
+  "address": "ROAD 3A, MOYEDE STREET, ANIFALAJE LAGELU 930283 IBADAN Oyo NG, Akobo, Ibadan",
+  "signals": [
+    "Admissions Open",
+    "Safe and Structured Campus",
+    "Early Years to College Pathway",
+    "Strong Academic Foundation",
+    "Character and Leadership Focus",
+    "Family-Centered Learning"
+  ],
+  "programs": [
+    {
+      "title": "Nursery School",
+      "text": "Play-based foundations that build confidence, communication, and social development.",
+      "level": "Creche to Kindergarten",
+      "outcomes": [
+        "Language and literacy readiness",
+        "Emotional growth and self-expression",
+        "Early numeracy through practical activities"
+      ]
+    },
+    {
+      "title": "Primary School",
+      "text": "A structured curriculum focused on strong academics, creativity, and character development.",
+      "level": "Year 1 to Year 6",
+      "outcomes": [
+        "Strong reading and numeracy progression",
+        "Project-based science and discovery",
+        "Teamwork, discipline, and leadership habits"
+      ]
+    },
+    {
+      "title": "Model College",
+      "text": "College-level preparation with academic depth, mentoring, and future-ready skills.",
+      "level": "Junior and Senior College",
+      "outcomes": [
+        "WAEC and NECO readiness support",
+        "STEM, arts, and leadership pathways",
+        "Career guidance and mentorship"
+      ]
+    }
+  ],
+  "life": [
+    {
+      "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1300&q=80",
+      "caption": "Modern Classrooms",
+      "className": "wide"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1519452575417-564c1401ecc0?auto=format&fit=crop&w=1100&q=80",
+      "caption": "Interactive Learning",
+      "className": "tall"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
+      "caption": "Creative Arts",
+      "className": "wide"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=1100&q=80",
+      "caption": "Sports and Movement",
+      "className": "tall"
+    }
+  ],
+  "stories": [
+    {
+      "quote": "Admissions was clear and supportive from start to finish. Our child settled in quickly.",
+      "name": "Parent Testimonial",
+      "role": "Parent, Primary"
+    },
+    {
+      "quote": "Teachers communicate progress clearly and provide practical support for learning at home.",
+      "name": "Parent Testimonial",
+      "role": "Parent, Nursery"
+    },
+    {
+      "quote": "The school combines strong academics with confidence-building and discipline.",
+      "name": "Parent Testimonial",
+      "role": "Parent, College"
+    }
+  ]
+}
